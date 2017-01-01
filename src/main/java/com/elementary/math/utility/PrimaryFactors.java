@@ -37,11 +37,13 @@ public class PrimaryFactors {
 			if (done) {
 				done = false;
 			} else {
-				if (primaryFactors.containsKey(n)) {
+				if (n != 1) {
+					if (primaryFactors.containsKey(n)) {
 
-					primaryFactors.put(n, primaryFactors.get(n) + 1);
-				} else {
-					primaryFactors.put(n, 1);
+						primaryFactors.put(n, primaryFactors.get(n) + 1);
+					} else {
+						primaryFactors.put(n, 1);
+					}
 				}
 				break;
 
@@ -51,14 +53,28 @@ public class PrimaryFactors {
 		return primaryFactors;
 	}
 
-	public static Integer convertPrimaryFactors(Map<Integer,Integer> primFactors){
-		
-		double result=1;
-		for(Entry<Integer, Integer> entry: primFactors.entrySet()){
-			
+	public static Integer convertPrimaryFactors(
+			Map<Integer, Integer> primFactors) {
+
+		double result = 1;
+		for (Entry<Integer, Integer> entry : primFactors.entrySet()) {
+
 			result = result * Math.pow(entry.getKey(), entry.getValue());
-			
+
 		}
 		return (int) result;
+	}
+	public static String prettyPrintPrimaryFactors(int n, Map<Integer,Integer>primFacts){
+		String result = "";
+		for(Entry<Integer,Integer> entry: primFacts.entrySet()){
+			
+			result = result + String.valueOf(entry.getKey()) + "^" + String.valueOf(entry.getValue()) + "*";
+			
+		}
+		
+		result = result.subSequence(0, result.lastIndexOf('*')) + "";
+		result = result.trim();
+		result = result + "="+n;
+		return result;
 	}
 }
