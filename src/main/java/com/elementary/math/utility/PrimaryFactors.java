@@ -1,5 +1,6 @@
 package com.elementary.math.utility;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -53,19 +54,26 @@ public class PrimaryFactors {
 		return primaryFactors;
 	}
 
-	public static Integer convertPrimaryFactors(
+	public static BigInteger convertPrimaryFactors(
 			Map<Integer, Integer> primFactors) {
 
-		double result = 1;
+		//double result = 1;
+		BigInteger result = new BigInteger("1");
 		for (Entry<Integer, Integer> entry : primFactors.entrySet()) {
 
-			result = result * Math.pow(entry.getKey(), entry.getValue());
+			BigInteger base = new BigInteger(String.valueOf(entry.getKey()));
+			result = result.multiply(base.pow(entry.getValue()));
 
 		}
-		return (int) result;
+		return result;
 	}
 	public static String prettyPrintPrimaryFactors(int n, Map<Integer,Integer>primFacts){
 		String result = "";
+		if(n==1){
+			result = result + "1=1";
+			return result;
+		}
+
 		for(Entry<Integer,Integer> entry: primFacts.entrySet()){
 			
 			result = result + String.valueOf(entry.getKey()) + "^" + String.valueOf(entry.getValue()) + "*";

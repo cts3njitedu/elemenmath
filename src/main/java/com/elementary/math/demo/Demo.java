@@ -14,13 +14,14 @@ public class Demo {
 	public static void main(String [] args){
 		
 
-		/*List<Integer> numbers1 = new ArrayList<Integer>();
+		List<Integer> numbers1 = new ArrayList<Integer>();
 		numbers1.add(8);
 		numbers1.add(9);
 		numbers1.add(21);
 		CalculateLCMEulid calLcmE = new CalculateLCMEulid(numbers1);
 		calLcmE.execute();
-		System.out.println(calLcmE.lcmResult());*/
+		System.out.println(calLcmE.lcmResult());
+		System.exit(0);
 	
 		/*Map<Integer,Integer> pFactors = PrimaryFactors.getPrimaryFactors(120); 
 		

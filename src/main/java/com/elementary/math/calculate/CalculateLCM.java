@@ -1,5 +1,6 @@
 package com.elementary.math.calculate;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +60,7 @@ public class CalculateLCM {
 		}
 	}
 
-	public int lcmResult() {
+	public BigInteger lcmResult() {
 
 		
 		return PrimaryFactors.convertPrimaryFactors(primaryFactors);

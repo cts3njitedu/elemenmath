@@ -1,17 +1,18 @@
 package com.elementary.math.calculate;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import com.elementary.math.utility.RemoveDuplicates;
 
 public class CalculateLCMEulid {
 
-	private List<Integer> numbers;
+	private List<BigInteger> numbers;
 
-	private Integer lcmR;
+	private BigInteger lcmR;
 
 	public CalculateLCMEulid(List<Integer> numbers) {
-		this.numbers = RemoveDuplicates.removeDuplicates(numbers);
+		this.numbers = RemoveDuplicates.removeDuplicatesB(numbers);
 	}
 
 	public void execute() {
@@ -19,23 +20,23 @@ public class CalculateLCMEulid {
 		lcmR = lcm(0, 1);
 	}
 
-	public int lcm(int a, int b) {
+	public BigInteger lcm(int a, int b) {
 
 		if (b == numbers.size() - 1) {
 
-			return ((numbers.get(a) * numbers.get(b)) / CalculateGCDEulid.gcd(
+			return (numbers.get(a).multiply(numbers.get(b))).divide(CalculateGCDEulid.gcd(
 					numbers.get(a), numbers.get(b)));
 		} else {
 
 			numbers.set(b,
-					((numbers.get(a) * numbers.get(b)) / CalculateGCDEulid.gcd(
+					(numbers.get(a).multiply(numbers.get(b))).divide(CalculateGCDEulid.gcd(
 							numbers.get(a), numbers.get(b))));
 			return lcm(b, b + 1);
 		}
 
 	}
 
-	public int lcmResult() {
+	public BigInteger lcmResult() {
 		return lcmR;
 	}
 

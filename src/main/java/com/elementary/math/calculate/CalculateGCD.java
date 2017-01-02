@@ -1,5 +1,6 @@
 package com.elementary.math.calculate;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,8 @@ public class CalculateGCD {
 			}
 
 		} else {
-			for (Entry<Integer, Integer> entry : primaryFactors.entrySet()) {
+			Map<Integer,Integer> pFacts = new HashMap<Integer,Integer>(primaryFactors);
+			for (Entry<Integer, Integer> entry : pFacts.entrySet()) {
 
 				if (primFact.containsKey(entry.getKey())) {
 
@@ -67,7 +69,7 @@ public class CalculateGCD {
 
 	}
 
-	public int gcdResult() {
+	public BigInteger gcdResult() {
 
 		return PrimaryFactors.convertPrimaryFactors(primaryFactors);
 	}

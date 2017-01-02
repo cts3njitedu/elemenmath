@@ -1,5 +1,6 @@
 package com.elementary.math.model;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
@@ -8,37 +9,37 @@ import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 public class ElementaryMathResponse {
 
 	@JsonSerialize(include = Inclusion.NON_NULL)
-	private Integer leastCommonMultiple;
+	private BigInteger leastCommonMultiple;
 	@JsonSerialize(include = Inclusion.NON_NULL)
-	private Integer greatestCommonDivisor;
+	private BigInteger greatestCommonDivisor;
 	@JsonSerialize(include = Inclusion.NON_NULL)
-	private Integer leastCommonMultipleEulid;
+	private BigInteger leastCommonMultipleEulid;
 	@JsonSerialize(include = Inclusion.NON_NULL)
 	private Integer greatestCommonDivisorEulid;
 	@JsonSerialize(include = Inclusion.NON_NULL)
 	private List<String> primaryFactors;
 
-	public Integer getLeastCommonMultiple() {
+	public BigInteger getLeastCommonMultiple() {
 		return leastCommonMultiple;
 	}
 
-	public void setLeastCommonMultiple(Integer leastCommonMultiple) {
+	public void setLeastCommonMultiple(BigInteger leastCommonMultiple) {
 		this.leastCommonMultiple = leastCommonMultiple;
 	}
 
-	public Integer getGreatestCommonDivisor() {
+	public BigInteger getGreatestCommonDivisor() {
 		return greatestCommonDivisor;
 	}
 
-	public void setGreatestCommonDivisor(Integer greatestCommonDivisor) {
+	public void setGreatestCommonDivisor(BigInteger greatestCommonDivisor) {
 		this.greatestCommonDivisor = greatestCommonDivisor;
 	}
 
-	public Integer getLeastCommonMultipleEulid() {
+	public BigInteger getLeastCommonMultipleEulid() {
 		return leastCommonMultipleEulid;
 	}
 
-	public void setLeastCommonMultipleEulid(Integer leastCommonMultipleEulid) {
+	public void setLeastCommonMultipleEulid(BigInteger leastCommonMultipleEulid) {
 		this.leastCommonMultipleEulid = leastCommonMultipleEulid;
 	}
 
