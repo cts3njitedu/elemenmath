@@ -33,24 +33,35 @@ public class CalculateGCD {
 
 	private void smallestPrimaryFactors(Map<Integer, Integer> primFact) {
 
-		for (Entry<Integer, Integer> entry : primFact.entrySet()) {
+		if (!visited) {
 
-			if (primaryFactors.containsKey(entry.getKey())) {
+			for (Entry<Integer, Integer> entry : primFact.entrySet()) {
 
-				int currPrimExp = primaryFactors.get(entry.getKey());
-				int newPrimExp = entry.getValue();
-
-				if (newPrimExp < currPrimExp) {
-
-					primaryFactors.put(entry.getKey(), newPrimExp);
-				}
-
-			} else {
-				if (!visited)
-					primaryFactors.put(entry.getKey(), entry.getValue());
-
+				primaryFactors.put(entry.getKey(), entry.getValue());
 			}
 
+		} else {
+			for (Entry<Integer, Integer> entry : primaryFactors.entrySet()) {
+
+				if (primFact.containsKey(entry.getKey())) {
+
+					int currPrimExp = primaryFactors.get(entry.getKey());
+					int newPrimExp = entry.getValue();
+
+					if (newPrimExp < currPrimExp) {
+
+						primaryFactors.put(entry.getKey(), newPrimExp);
+					}
+
+				} else {
+					if (!visited)
+						primaryFactors.put(entry.getKey(), entry.getValue());
+					else
+						primaryFactors.remove(entry.getKey());
+
+				}
+
+			}
 		}
 		visited = true;
 

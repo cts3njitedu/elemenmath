@@ -22,17 +22,17 @@ public class Demo {
 		calLcmE.execute();
 		System.out.println(calLcmE.lcmResult());*/
 	
-		Map<Integer,Integer> pFactors = PrimaryFactors.getPrimaryFactors(120); 
+		/*Map<Integer,Integer> pFactors = PrimaryFactors.getPrimaryFactors(120); 
 		
 		System.out.println(pFactors.toString());
 		
-		System.out.println(PrimaryFactors.prettyPrintPrimaryFactors(120,pFactors));
+		System.out.println(PrimaryFactors.prettyPrintPrimaryFactors(120,pFactors));*/
 
-		System.exit(0);
+	
 		List<Integer> numbers = new ArrayList<Integer>();
 		numbers.add(3);
-		numbers.add(9);
-		numbers.add(12);
+		numbers.add(20);
+		numbers.add(17);
 		CalculateGCD calcGcd = new CalculateGCD(numbers);
 		
 		calcGcd.execute();
