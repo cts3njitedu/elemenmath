@@ -17,20 +17,15 @@ public class CalculateGCDEulid {
 
 	public void execute() {
 
-		gcdR = iterateNum(0, 1);
-
-	}
-
-	public int iterateNum(int a, int b) {
-
-		if (b == numbers.size() - 1)
-			return gcd(numbers.get(a), numbers.get(b));
-		else {
+        int gcd = numbers.get(0);
+		
+		for(int i =1; i<numbers.size();i++){
 			
-			numbers.set(b, gcd(numbers.get(a), numbers.get(b)));
-			return iterateNum(b, b+1);
-
+			gcd = CalculateGCDEulid.gcd(gcd, numbers.get(i));
+			
 		}
+		gcdR = gcd;
+
 	}
 
 	public static int gcd(int a, int b) {

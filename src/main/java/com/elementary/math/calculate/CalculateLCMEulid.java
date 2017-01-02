@@ -17,24 +17,18 @@ public class CalculateLCMEulid {
 
 	public void execute() {
 
-		lcmR = lcm(0, 1);
-	}
-
-	public BigInteger lcm(int a, int b) {
-
-		if (b == numbers.size() - 1) {
-
-			return (numbers.get(a).multiply(numbers.get(b))).divide(CalculateGCDEulid.gcd(
-					numbers.get(a), numbers.get(b)));
-		} else {
-
-			numbers.set(b,
-					(numbers.get(a).multiply(numbers.get(b))).divide(CalculateGCDEulid.gcd(
-							numbers.get(a), numbers.get(b))));
-			return lcm(b, b + 1);
+		
+		BigInteger lcm = new BigInteger(String.valueOf(numbers.get(0)));
+		
+		for(int i =1; i<numbers.size();i++){
+			
+			lcm = (lcm.multiply(numbers.get(i))).divide(CalculateGCDEulid.gcd(
+					lcm, numbers.get(i)));
+			
 		}
-
+		lcmR = lcm;
 	}
+
 
 	public BigInteger lcmResult() {
 		return lcmR;
