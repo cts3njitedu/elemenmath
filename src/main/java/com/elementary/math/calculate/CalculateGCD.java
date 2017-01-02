@@ -47,8 +47,8 @@ public class CalculateGCD {
 
 				if (primFact.containsKey(entry.getKey())) {
 
-					int currPrimExp = primaryFactors.get(entry.getKey());
-					int newPrimExp = entry.getValue();
+					int currPrimExp = entry.getValue();
+					int newPrimExp = primFact.get(entry.getKey()) ;
 
 					if (newPrimExp < currPrimExp) {
 
