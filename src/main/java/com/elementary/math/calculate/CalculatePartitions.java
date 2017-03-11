@@ -1,7 +1,9 @@
 package com.elementary.math.calculate;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CalculatePartitions {
@@ -108,6 +110,37 @@ public class CalculatePartitions {
 
 			}
 			return sum;
+		}
+	}
+
+	public static void printPartitions(int n) {
+		printPartitions("", n, n, 0, n);
+	}
+
+	public static void printPartitions(String part, int prevNum, int left,
+			int subtotal, int total) {
+
+		if (left == 1) {
+
+			System.out.println(part + " " + left);
+			return;
+		} else {
+
+			for (int i = left; i >= 1; i--) {
+
+				if (i <= prevNum) {
+					int sum = subtotal + i;
+					if (sum == total) {
+						
+						System.out.println(part + " " + i);
+					}
+
+					else {
+						
+						printPartitions(part + " " + i, i, total - sum, sum, total);
+					}
+				}
+			}
 		}
 	}
 }

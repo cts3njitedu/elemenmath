@@ -9,19 +9,21 @@ import com.elementary.math.utility.PrimaryFactors;
 
 public class CalculatePrimePartitions {
 
-	private Map<Integer, BigInteger> sopfTable;
-	private Map<Integer, BigInteger> partitionTable;
+	private BigInteger [] sopfTable;
+	private BigInteger [] partitionTable;
+	private int n;
 	private static BigInteger ONE = new BigInteger("1");
 	private static BigInteger ZERO = new BigInteger("0");
 
-	public CalculatePrimePartitions() {
+	public CalculatePrimePartitions(int n) {
 
-		this.sopfTable = new HashMap<Integer, BigInteger>();
-		this.partitionTable = new HashMap<Integer, BigInteger>();
+		this.sopfTable = new BigInteger[n+1];
+		this.partitionTable = new BigInteger[n+1];
+		this.n = n;
 
 	}
 
-	public void execute(int n) {
+	public void execute() {
 
 		for (int i = 0; i <= n; i++) {
 			BigInteger primPart = primePartitions(i);
@@ -42,25 +44,25 @@ public class CalculatePrimePartitions {
 			BigInteger sum = ZERO;
 			for (int j = 1; j < n; j++) {
 
-				BigInteger sopf = sopfTable.get(j);
-				BigInteger primePart = partitionTable.get(n - j);
+				BigInteger sopf = sopfTable[j];
+				BigInteger primePart = partitionTable[n - j];
 
 				if (sopf == null) {
 					sopf = sopf(j);
-					sopfTable.put(j, sopf);
+					sopfTable[j] = sopf;
 
 				}
 				if (primePart == null) {
 					primePart = primePartitions(n - j);
-					partitionTable.put(n - j, primePart);
+					partitionTable[n - j] =primePart;
 				}
 				sum = sum.add(sopf.multiply(primePart));
 			}
 
-			BigInteger sopfN = sopfTable.get(n);
+			BigInteger sopfN = sopfTable[n];
 			if (sopfN == null) {
 				sopfN = sopf(n);
-				sopfTable.put(n, sopfN);
+				sopfTable[n] =sopfN;
 			}
 			return (sopfN.add(sum)).divide(new BigInteger(n + ""));
 

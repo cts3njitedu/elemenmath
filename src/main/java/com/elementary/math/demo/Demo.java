@@ -1,5 +1,6 @@
 package com.elementary.math.demo;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +28,11 @@ public class Demo {
 		// "1570"));
 		// System.out.println(CalculateLogicTable.convertToDecimal(12,"AAA"));
 
-	/*	CalculatePrimePartitions calcPrimePart = new CalculatePrimePartitions();
-		long startTime = System.nanoTime();
-		calcPrimePart.execute(1000);
-		long endTime = System.nanoTime();
-		System.out.println("Time: "+((endTime-startTime)/1000000000.0)+ " s!!!");*/
+		//CalculatePrimePartitions calcPrimePart = new CalculatePrimePartitions(1000);
+		
+		CalculatePartitions.printPartitions(1);
+		
+		//System.out.println(Math.ceil(3/2.0));
 		
 	}
 
