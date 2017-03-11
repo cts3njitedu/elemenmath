@@ -7,6 +7,50 @@ import java.util.Map.Entry;
 
 public class PrimaryFactors {
 
+	public static Map<Integer, Integer> primFactors(int n){
+		
+		Map<Integer,Integer> primeTable = new HashMap<Integer,Integer>();
+		
+		return primFactors(n,primeTable);
+		
+	}
+	public static Map<Integer, Integer> primFactors(int n, Map<Integer,Integer>primeTable){
+		
+		if(n<=1)
+			return primeTable;
+		else{
+			for(int i=2; i<=Math.ceil(Math.sqrt(n)); i++){
+				
+				if(n%i==0){
+					Integer prime = primeTable.get(i);
+					if(prime==null){
+						
+						primeTable.put(i,1);
+					}
+					else{
+						
+						primeTable.put(i, prime+1);
+					}
+					return primFactors(n/i,primeTable);
+					
+				}
+			}
+			Integer prime = primeTable.get(n);
+			if(prime==null){
+				
+				primeTable.put(n,1);
+			}
+			else{
+				
+				primeTable.put(n, prime+1);
+			}
+			return primeTable;
+			
+		}
+		
+		
+		
+	}
 	public static Map<Integer, Integer> getPrimaryFactors(Integer n) {
 
 		Map<Integer, Integer> primaryFactors = new HashMap<Integer, Integer>();
