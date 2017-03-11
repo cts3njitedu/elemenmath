@@ -17,7 +17,11 @@ public class ElementaryMathResponse {
 	@JsonSerialize(include = Inclusion.NON_NULL)
 	private Integer greatestCommonDivisorEulid;
 	@JsonSerialize(include = Inclusion.NON_NULL)
-	private List<String> primaryFactors;
+	private String primaryFactors;
+	@JsonSerialize(include = Inclusion.NON_NULL)
+	private BigInteger cardinalPartition;
+	@JsonSerialize(include = Inclusion.NON_NULL)
+	private BigInteger cardinalPrimePartition;
 
 	public BigInteger getLeastCommonMultiple() {
 		return leastCommonMultiple;
@@ -51,12 +55,28 @@ public class ElementaryMathResponse {
 		this.greatestCommonDivisorEulid = greatestCommonDivisorEulid;
 	}
 
-	public List<String> getPrimaryFactors() {
+	public String getPrimaryFactors() {
 		return primaryFactors;
 	}
 
-	public void setPrimaryFactors(List<String> primaryFactors) {
+	public void setPrimaryFactors(String primaryFactors) {
 		this.primaryFactors = primaryFactors;
+	}
+
+	public BigInteger getCardinalPartition() {
+		return cardinalPartition;
+	}
+
+	public void setCardinalPartition(BigInteger cardinalPartition) {
+		this.cardinalPartition = cardinalPartition;
+	}
+
+	public BigInteger getCardinalPrimePartition() {
+		return cardinalPrimePartition;
+	}
+
+	public void setCardinalPrimePartition(BigInteger cardinalPrimePartition) {
+		this.cardinalPrimePartition = cardinalPrimePartition;
 	}
 
 }

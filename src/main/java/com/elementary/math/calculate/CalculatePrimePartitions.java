@@ -23,14 +23,19 @@ public class CalculatePrimePartitions {
 
 	}
 
-	public void execute() {
+	public BigInteger cardinalPrimePartition() {
 
-		for (int i = 0; i <= n; i++) {
-			BigInteger primPart = primePartitions(i);
+		BigInteger answer = null;
+		for (int i = 1; i <= n; i++) {
+			 
 			if (i == n) {
-				System.out.println(i + ":" + primPart);
+				answer = primePartitions(i);
+			}
+			else{
+				primePartitions(i);
 			}
 		}
+		return answer;
 	}
 
 	public BigInteger primePartitions(int n) {

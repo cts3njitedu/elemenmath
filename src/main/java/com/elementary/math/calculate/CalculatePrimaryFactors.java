@@ -22,7 +22,7 @@ public class CalculatePrimaryFactors {
 		
 		for(Integer n : numbers){
 			
-			Map<Integer,Integer> pFacts = PrimaryFactors.getPrimaryFactors(n);
+			Map<Integer,Integer> pFacts = PrimaryFactors.primFactors(n);
 			primaryFactors.add(PrimaryFactors.prettyPrintPrimaryFactors(n,pFacts));
 		}
 	}

@@ -1,20 +1,23 @@
 package com.elementary.math.calculate;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class CalculatePartitions {
 
-	private Map<Integer, Long> partitionTable = new HashMap<Integer, Long>();
+	private Long[] partitionTable;
 
-	private Map<Integer, BigInteger> partitionTableBig = new HashMap<Integer, BigInteger>();
+	private BigInteger[] partitionTableBig;
 
+	private int n;
 	private static BigInteger ONE = new BigInteger("1");
 	private static BigInteger ZERO = new BigInteger("0");
 	private static BigInteger NEGONE = ONE.negate();
+
+	public CalculatePartitions(int n) {
+		this.partitionTableBig = new BigInteger[n + 1];
+		this.partitionTable = new Long[n + 1];
+		this.n = n;
+	}
 
 	public long partitions(int n) {
 
@@ -33,27 +36,26 @@ public class CalculatePartitions {
 				int nl = n - ((k * (3 * k - 1))) / 2;
 				int nr = n - ((k * (3 * k + 1))) / 2;
 
-				long leftSum = 0;
-				long rightSum = 0;
+				Long leftSum = 0L;
+				Long rightSum = 0L;
 
 				if (nl >= 0) {
 
-					if (partitionTable.get(nl) == null) {
+					leftSum = partitionTable[nl];
+					if (leftSum == null) {
 						leftSum = partitions(nl);
-						partitionTable.put(nl, leftSum);
-					} else {
-
-						leftSum = partitionTable.get(nl);
+						partitionTable[nl] = leftSum;
 					}
 				}
 				if (nr >= 0) {
 
-					if (partitionTable.get(nr) == null) {
+					rightSum = partitionTable[nr];
+					if (rightSum == null) {
 						rightSum = partitions(nr);
-						partitionTable.put(nr, rightSum);
+						partitionTable[nr] = rightSum;
 					} else {
 
-						rightSum = partitionTable.get(nr);
+						rightSum = partitionTable[nr];
 					}
 				}
 
@@ -64,6 +66,23 @@ public class CalculatePartitions {
 			}
 			return sum;
 		}
+	}
+
+	public BigInteger cardinalPartitions(){
+		
+		BigInteger answer = null;
+		for(int i=1; i<=n; i++){
+			
+		
+		 if(i==n){
+			 answer =  partitionsBig(i);
+		 }
+		 else{
+			 partitionsBig(i);
+		 }
+			
+		}
+		return answer;
 	}
 
 	public BigInteger partitionsBig(int n) {
@@ -84,22 +103,17 @@ public class CalculatePartitions {
 
 				if (nl >= 0) {
 
-					if (partitionTable.get(nl) == null) {
+					leftSum = partitionTableBig[nl];
+					if (leftSum == null) {
 						leftSum = partitionsBig(nl);
-						partitionTableBig.put(nl, leftSum);
-					} else {
-
-						leftSum = partitionTableBig.get(nl);
+						partitionTableBig[nl] = leftSum;
 					}
 				}
 				if (nr >= 0) {
-
-					if (partitionTableBig.get(nr) == null) {
+					rightSum = partitionTableBig[nr];
+					if (rightSum == null) {
 						rightSum = partitionsBig(nr);
-						partitionTableBig.put(nr, rightSum);
-					} else {
-
-						rightSum = partitionTableBig.get(nr);
+						partitionTableBig[nr] = rightSum;
 					}
 				}
 				BigInteger constant = (NEGONE).pow(k + 1);
@@ -122,7 +136,7 @@ public class CalculatePartitions {
 
 		if (left == 1) {
 
-			System.out.println(part + " " + left);
+			System.out.println(part + left + " ");
 			return;
 		} else {
 
@@ -131,13 +145,14 @@ public class CalculatePartitions {
 				if (i <= prevNum) {
 					int sum = subtotal + i;
 					if (sum == total) {
-						
-						System.out.println(part + " " + i);
+
+						System.out.println(part + i + " ");
 					}
 
 					else {
-						
-						printPartitions(part + " " + i, i, total - sum, sum, total);
+
+						printPartitions(part + i + " ", i, total - sum, sum,
+								total);
 					}
 				}
 			}

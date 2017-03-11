@@ -28,12 +28,14 @@ public class Demo {
 		// "1570"));
 		// System.out.println(CalculateLogicTable.convertToDecimal(12,"AAA"));
 
-		//CalculatePrimePartitions calcPrimePart = new CalculatePrimePartitions(1000);
-		
-		CalculatePartitions.printPartitions(1);
-		
-		//System.out.println(Math.ceil(3/2.0));
-		
+		// CalculatePrimePartitions calcPrimePart = new
+		// CalculatePrimePartitions(1000);
+
+		CalculatePartitions calcPart = new CalculatePartitions(10);
+		calcPart.cardinalPartitions();
+
+		// System.out.println(Math.ceil(3/2.0));
+
 	}
 
 	public static void thePast() {
