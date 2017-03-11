@@ -27,8 +27,12 @@ public class Demo {
 		// "1570"));
 		// System.out.println(CalculateLogicTable.convertToDecimal(12,"AAA"));
 
-		CalculatePrimePartitions calcPrimePart = new CalculatePrimePartitions();
-		System.out.println(calcPrimePart.primePartitions(21));
+	/*	CalculatePrimePartitions calcPrimePart = new CalculatePrimePartitions();
+		long startTime = System.nanoTime();
+		calcPrimePart.execute(1000);
+		long endTime = System.nanoTime();
+		System.out.println("Time: "+((endTime-startTime)/1000000000.0)+ " s!!!");*/
+		
 	}
 
 	public static void thePast() {
