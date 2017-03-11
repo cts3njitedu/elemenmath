@@ -9,16 +9,19 @@ import com.elementary.math.utility.PrimaryFactors;
 
 public class CalculatePrimePartitions {
 
-	private BigInteger [] sopfTable;
-	private BigInteger [] partitionTable;
+	private BigInteger[] sopfTable;
+	private BigInteger[] partitionTable;
 	private int n;
 	private static BigInteger ONE = new BigInteger("1");
 	private static BigInteger ZERO = new BigInteger("0");
 
+	private Map<Integer, Boolean> primaryNumbers;
+
 	public CalculatePrimePartitions(int n) {
 
-		this.sopfTable = new BigInteger[n+1];
-		this.partitionTable = new BigInteger[n+1];
+		this.sopfTable = new BigInteger[n + 1];
+		this.partitionTable = new BigInteger[n + 1];
+		this.primaryNumbers = new HashMap<Integer,Boolean>();
 		this.n = n;
 
 	}
@@ -27,11 +30,10 @@ public class CalculatePrimePartitions {
 
 		BigInteger answer = null;
 		for (int i = 1; i <= n; i++) {
-			 
+
 			if (i == n) {
 				answer = primePartitions(i);
-			}
-			else{
+			} else {
 				primePartitions(i);
 			}
 		}
@@ -59,7 +61,7 @@ public class CalculatePrimePartitions {
 				}
 				if (primePart == null) {
 					primePart = primePartitions(n - j);
-					partitionTable[n - j] =primePart;
+					partitionTable[n - j] = primePart;
 				}
 				sum = sum.add(sopf.multiply(primePart));
 			}
@@ -67,7 +69,7 @@ public class CalculatePrimePartitions {
 			BigInteger sopfN = sopfTable[n];
 			if (sopfN == null) {
 				sopfN = sopf(n);
-				sopfTable[n] =sopfN;
+				sopfTable[n] = sopfN;
 			}
 			return (sopfN.add(sum)).divide(new BigInteger(n + ""));
 
@@ -83,5 +85,74 @@ public class CalculatePrimePartitions {
 		}
 
 		return new BigInteger(sum + "");
+	}
+
+	public void printPrimePartitions() {
+
+		
+		printPrimePartitions("", n, n, 0, n);
+	}
+
+	public void printPrimePartitions(String part, int prevNum, int left,
+			int subtotal, int total) {
+
+		if (left == 2) {
+
+			System.out.println(part + "+" + left);
+			return;
+		} 
+		else if(left==1){
+			return;
+		}
+		else {
+
+			for (int i = left; i >= 2; i--) {
+
+				if(i>prevNum){
+					continue;
+				}
+				Boolean primary = primaryNumbers.get(i);
+				boolean isPrimary = false;
+				
+				if(primary==null){
+				 isPrimary = PrimaryFactors.isPrimaryNumber(i);
+				 primaryNumbers.put(i, isPrimary);
+				
+				}
+				else{
+					
+					isPrimary = primary;
+				}
+				
+				if (i <= prevNum && isPrimary) {
+					int sum = subtotal + i;
+					if (sum == total) {
+
+						String subPart="";
+						if(part.length()==0){
+							subPart = part + "" + i;
+						}
+						else{
+							subPart = part + "+"+i;
+						}
+						System.out.println(subPart);
+					}
+
+					else if(sum<total){
+
+						String subPart="";
+						if(part.length()==0){
+							subPart = part + "" + i;
+						}
+						else{
+							subPart = part + "+"+i;
+						}
+					
+						printPrimePartitions(subPart, i, total - sum, sum,
+								total);
+					}
+				}
+			}
+		}
 	}
 }

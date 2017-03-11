@@ -68,19 +68,17 @@ public class CalculatePartitions {
 		}
 	}
 
-	public BigInteger cardinalPartitions(){
-		
+	public BigInteger cardinalPartitions() {
+
 		BigInteger answer = null;
-		for(int i=1; i<=n; i++){
-			
-		
-		 if(i==n){
-			 answer =  partitionsBig(i);
-		 }
-		 else{
-			 partitionsBig(i);
-		 }
-			
+		for (int i = 1; i <= n; i++) {
+
+			if (i == n) {
+				answer = partitionsBig(i);
+			} else {
+				partitionsBig(i);
+			}
+
 		}
 		return answer;
 	}
@@ -136,7 +134,7 @@ public class CalculatePartitions {
 
 		if (left == 1) {
 
-			System.out.println(part + left + " ");
+			System.out.println(part + "+" + left);
 			return;
 		} else {
 
@@ -144,15 +142,25 @@ public class CalculatePartitions {
 
 				if (i <= prevNum) {
 					int sum = subtotal + i;
+					String subPart = "";
 					if (sum == total) {
 
-						System.out.println(part + i + " ");
+						if (part.length() == 0) {
+							subPart = part + "" + i;
+						} else {
+							subPart = part + "+" + i;
+						}
+						System.out.println(subPart);
 					}
 
 					else {
+						if (part.length() == 0) {
+							subPart = part + "" + i;
+						} else {
+							subPart = part + "+" + i;
+						}
 
-						printPartitions(part + i + " ", i, total - sum, sum,
-								total);
+						printPartitions(subPart, i, total - sum, sum, total);
 					}
 				}
 			}
