@@ -21,7 +21,7 @@ public class CalculatePrimePartitions {
 
 		this.sopfTable = new BigInteger[n + 1];
 		this.partitionTable = new BigInteger[n + 1];
-		this.primaryNumbers = new HashMap<Integer,Boolean>();
+		this.primaryNumbers = new HashMap<Integer, Boolean>();
 		this.n = n;
 
 	}
@@ -86,68 +86,61 @@ public class CalculatePrimePartitions {
 
 		return new BigInteger(sum + "");
 	}
-
+	
 	public void printPrimePartitions() {
 
-		
 		printPrimePartitions("", n, n, 0, n);
 	}
 
-	public void printPrimePartitions(String part, int prevNum, int left,
+	private void printPrimePartitions(String part, int prevNum, int left,
 			int subtotal, int total) {
 
 		if (left == 2) {
 
 			System.out.println(part + "+" + left);
 			return;
-		} 
-		else if(left==1){
+		} else if (left == 1) {
 			return;
-		}
-		else {
+		} else {
 
 			for (int i = left; i >= 2; i--) {
 
-				if(i>prevNum){
+				if (i > prevNum) {
 					continue;
 				}
 				Boolean primary = primaryNumbers.get(i);
 				boolean isPrimary = false;
-				
-				if(primary==null){
-				 isPrimary = PrimaryFactors.isPrimaryNumber(i);
-				 primaryNumbers.put(i, isPrimary);
-				
-				}
-				else{
-					
+
+				if (primary == null) {
+					isPrimary = PrimaryFactors.isPrimaryNumber(i);
+					primaryNumbers.put(i, isPrimary);
+
+				} else {
+
 					isPrimary = primary;
 				}
-				
+
 				if (i <= prevNum && isPrimary) {
 					int sum = subtotal + i;
+					String subPart = "";
 					if (sum == total) {
 
-						String subPart="";
-						if(part.length()==0){
+						if (part.length() == 0) {
 							subPart = part + "" + i;
-						}
-						else{
-							subPart = part + "+"+i;
+						} else {
+							subPart = part + "+" + i;
 						}
 						System.out.println(subPart);
 					}
 
-					else if(sum<total){
+					else if (sum < total) {
 
-						String subPart="";
-						if(part.length()==0){
+						if (part.length() == 0) {
 							subPart = part + "" + i;
+						} else {
+							subPart = part + "+" + i;
 						}
-						else{
-							subPart = part + "+"+i;
-						}
-					
+
 						printPrimePartitions(subPart, i, total - sum, sum,
 								total);
 					}

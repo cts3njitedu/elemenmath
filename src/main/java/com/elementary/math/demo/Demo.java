@@ -28,14 +28,14 @@ public class Demo {
 		// "1570"));
 		// System.out.println(CalculateLogicTable.convertToDecimal(12,"AAA"));
 
-		System.out.println("Primary Numbers: ");
+		System.out.println("Prime Partitions: ");
 		CalculatePrimePartitions calcPrimePart = new CalculatePrimePartitions(
-				100);
+				500);
 		
 		calcPrimePart.printPrimePartitions();
 		
-		
-		CalculatePartitions.printPartitions(10);
+		/*System.out.println("Integer Partitions: ");
+		CalculatePartitions.printPartitions(10);*/
 	
 
 		// System.out.println(Math.ceil(3/2.0));

@@ -129,7 +129,7 @@ public class CalculatePartitions {
 		printPartitions("", n, n, 0, n);
 	}
 
-	public static void printPartitions(String part, int prevNum, int left,
+	private static void printPartitions(String part, int prevNum, int left,
 			int subtotal, int total) {
 
 		if (left == 1) {
