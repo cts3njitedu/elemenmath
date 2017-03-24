@@ -125,45 +125,55 @@ public class CalculatePartitions {
 		}
 	}
 
-	public static void printPartitions(int n) {
-		printPartitions("", n, n, 0, n);
+	public void printPartitions() {
+		//printPartitions("", n, n, 0, n);
 	}
 
-	private static void printPartitions(String part, int prevNum, int left,
-			int subtotal, int total) {
+	public static void printPartitions(int n) {
+		printPartitions("", n, n);
+	}
 
-		if (left == 1) {
+	private static void printPartitions(String part, int max, int total) {
 
-			System.out.println(part + "+" + left);
+		if(total == 0){
+			
+			System.out.println(part);
+		}
+		else if(total<0){
+			
 			return;
+		}
+		else{
+			
+			for(int i=max; i>=1; i--){
+				
+				printPartitions(part + i + " ", i,total-i);
+				
+			}
+			
+			
+		}
+	}
+
+	public static int p(int n) {
+		int sum = 0;
+		for (int k = 0; k <= n; k++) {
+
+			sum = sum + p(n, k);
+		}
+		return sum;
+	}
+
+	public static int p(int n, int k) {
+		if (n == k) {
+			return 1;
+		} else if (k > n || k == 0) {
+			return 0;
 		} else {
 
-			for (int i = left; i >= 1; i--) {
+			return p(n - 1, k - 1) + p(n - k, k);
 
-				if (i <= prevNum) {
-					int sum = subtotal + i;
-					String subPart = "";
-					if (sum == total) {
-
-						if (part.length() == 0) {
-							subPart = part + "" + i;
-						} else {
-							subPart = part + "+" + i;
-						}
-						System.out.println(subPart);
-					}
-
-					else {
-						if (part.length() == 0) {
-							subPart = part + "" + i;
-						} else {
-							subPart = part + "+" + i;
-						}
-
-						printPartitions(subPart, i, total - sum, sum, total);
-					}
-				}
-			}
 		}
+
 	}
 }

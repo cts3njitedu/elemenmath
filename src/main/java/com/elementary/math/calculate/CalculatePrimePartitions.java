@@ -86,7 +86,7 @@ public class CalculatePrimePartitions {
 
 		return new BigInteger(sum + "");
 	}
-	
+
 	public void printPrimePartitions() {
 
 		printPrimePartitions("", n, n, 0, n);
@@ -97,7 +97,7 @@ public class CalculatePrimePartitions {
 
 		if (left == 2) {
 
-			System.out.println(part + "+" + left);
+			System.out.println(part + left);
 			return;
 		} else if (left == 1) {
 			return;
@@ -108,38 +108,27 @@ public class CalculatePrimePartitions {
 				if (i > prevNum) {
 					continue;
 				}
-				Boolean primary = primaryNumbers.get(i);
-				boolean isPrimary = false;
+				Boolean isPrimary = primaryNumbers.get(i);
+				
 
-				if (primary == null) {
+				if (isPrimary == null) {
 					isPrimary = PrimaryFactors.isPrimaryNumber(i);
 					primaryNumbers.put(i, isPrimary);
-
-				} else {
-
-					isPrimary = primary;
+					if (!isPrimary) {
+						continue;
+					}
+				
 				}
 
 				if (i <= prevNum && isPrimary) {
 					int sum = subtotal + i;
-					String subPart = "";
+					String subPart = part + i + " ";
 					if (sum == total) {
 
-						if (part.length() == 0) {
-							subPart = part + "" + i;
-						} else {
-							subPart = part + "+" + i;
-						}
 						System.out.println(subPart);
 					}
 
 					else if (sum < total) {
-
-						if (part.length() == 0) {
-							subPart = part + "" + i;
-						} else {
-							subPart = part + "+" + i;
-						}
 
 						printPrimePartitions(subPart, i, total - sum, sum,
 								total);
